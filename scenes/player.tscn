@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://sjiyoq4a0jj0"]
+
+[ext_resource type="Script" path="res://scenes/player_controller.gd" id="1_wwyby"]
+[ext_resource type="Texture2D" uid="uid://dd4fxeg1fyrmm" path="res://sprites/tilemap.png" id="2_rdf4h"]
+[ext_resource type="Script" path="res://scenes/player_view.gd" id="2_y3lwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlas2"]
+atlas = ExtResource("2_rdf4h")
+region = Rect2(85, 68, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4b8c"]
+atlas = ExtResource("2_rdf4h")
+region = Rect2(102, 67, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rj07e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlas2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4b8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juwjg"]
+size = Vector2(10, 12)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(1703, 1598)
+scale = Vector2(15, 15)
+script = ExtResource("1_wwyby")
+SPEED = 900.0
+JUMP_VELOCITY = -1600.0
+GRAVITY_MODIFIER = 4.0
+
+[node name="View" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_y3lwp")
+
+[node name="IdleSprite" type="Sprite2D" parent="View"]
+unique_name_in_owner = true
+texture = ExtResource("2_rdf4h")
+offset = Vector2(2.08165e-12, -8)
+region_enabled = true
+region_rect = Rect2(85, 68, 16, 16)
+
+[node name="JumpSprite" type="Sprite2D" parent="View"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("2_rdf4h")
+offset = Vector2(2.08165e-12, -8)
+region_enabled = true
+region_rect = Rect2(102, 67, 16, 16)
+
+[node name="WalkSprite" type="AnimatedSprite2D" parent="View"]
+unique_name_in_owner = true
+visible = false
+sprite_frames = SubResource("SpriteFrames_rj07e")
+offset = Vector2(2.08165e-12, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_juwjg")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
