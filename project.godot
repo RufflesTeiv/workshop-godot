@@ -24,6 +24,10 @@ GameManager="*res://managers/game_manager.gd"
 window/size/viewport_width=3456
 window/size/viewport_height=2160
 window/size/mode=4
+window/size/initial_position_type=2
+window/size/initial_screen=1
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [dotnet]
 
@@ -63,6 +67,11 @@ down={
 jump={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+arm_up={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 

@@ -6,11 +6,14 @@ class_name PlayerController
 @export var JUMP_VELOCITY = -400.0
 @export var GRAVITY_MODIFIER = 1.0
 
-var facing_right = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var facing_right := true
+var player_armed := false
 
 ### Event functions 
 func _physics_process(delta):
+	_check_armed()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * GRAVITY_MODIFIER * delta
@@ -32,6 +35,12 @@ func _physics_process(delta):
 	%View.animate(velocity, is_on_floor())
 
 ### Private functions
+func _check_armed():
+	if Input.is_action_just_pressed("arm_up"):
+		player_armed = true
+		
+	%View.set_sprite_armed(player_armed)
+
 func _check_direction(direction : float):
 	var left_to_right := direction > 0 && !facing_right
 	var right_to_left := direction < 0 && facing_right
