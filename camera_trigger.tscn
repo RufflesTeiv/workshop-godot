@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2tigsbd1qkng"]
+
+[ext_resource type="Script" path="res://scenes/camera_trigger_controller.gd" id="1_3gdg5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j04k1"]
+size = Vector2(200, 200)
+
+[node name="CameraTrigger" type="Area2D"]
+position = Vector2(3453, 1778)
+collision_layer = 8
+script = ExtResource("1_3gdg5")
+camera_point = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j04k1")
+debug_color = Color(0.701961, 0, 0.584314, 0.419608)

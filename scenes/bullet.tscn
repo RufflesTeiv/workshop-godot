@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw2rk5bm5epqc"]
+
+[ext_resource type="Texture2D" uid="uid://dd4fxeg1fyrmm" path="res://sprites/tilemap.png" id="1_36udq"]
+[ext_resource type="Script" path="res://scenes/bullet_controller.gd" id="1_v1nqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lexna"]
+size = Vector2(180, 90)
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 8
+gravity_scale = 2.66454e-15
+max_contacts_reported = 5
+contact_monitor = true
+linear_velocity = Vector2(3000, 2.08165e-12)
+linear_damp_mode = 1
+script = ExtResource("1_v1nqn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+scale = Vector2(15, 15)
+texture = ExtResource("1_36udq")
+offset = Vector2(6, 2.08165e-12)
+region_enabled = true
+region_rect = Rect2(70, 73, 12, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(90, 2.08165e-12)
+shape = SubResource("RectangleShape2D_lexna")

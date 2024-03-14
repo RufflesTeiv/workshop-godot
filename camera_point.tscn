@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://db6cfqk72tnty"]
+
+[ext_resource type="Script" path="res://scenes/camera_point_controller.gd" id="1_wssrw"]
+
+[node name="CameraPoint0" type="Marker2D"]
+position = Vector2(1728, 1080)
+script = ExtResource("1_wssrw")

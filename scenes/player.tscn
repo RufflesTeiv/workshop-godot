@@ -1,8 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://sjiyoq4a0jj0"]
+[gd_scene load_steps=16 format=3 uid="uid://sjiyoq4a0jj0"]
 
 [ext_resource type="Script" path="res://scenes/player_controller.gd" id="1_wwyby"]
 [ext_resource type="Texture2D" uid="uid://dd4fxeg1fyrmm" path="res://sprites/tilemap.png" id="2_rdf4h"]
 [ext_resource type="Script" path="res://scenes/player_view.gd" id="2_y3lwp"]
+[ext_resource type="AudioStream" uid="uid://t2gt3ermx4ga" path="res://audio/jump.wav" id="3_arifh"]
+[ext_resource type="AudioStream" uid="uid://c58656ew4w6ho" path="res://audio/arm_up.wav" id="4_6dm78"]
+[ext_resource type="AudioStream" uid="uid://ceig4wdmma7hq" path="res://audio/shoot.wav" id="4_dyfut"]
+[ext_resource type="PackedScene" uid="uid://cw2rk5bm5epqc" path="res://scenes/bullet.tscn" id="4_o8exg"]
+[ext_resource type="AudioStream" uid="uid://dwqbw5hsyua6j" path="res://audio/step.wav" id="5_7jihb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4b8c"]
 atlas = ExtResource("2_rdf4h")
@@ -54,14 +59,21 @@ size = Vector2(10, 12)
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1703, 1598)
 scale = Vector2(15, 15)
+collision_mask = 9
 script = ExtResource("1_wwyby")
 SPEED = 900.0
 JUMP_VELOCITY = -1600.0
 GRAVITY_MODIFIER = 4.0
+LAUNCH_VELOCITY = -16000.0
+PROJECTILE_SCENE = ExtResource("4_o8exg")
 
 [node name="View" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_y3lwp")
+ARM_UP_SOUND = ExtResource("4_6dm78")
+JUMP_SOUND = ExtResource("3_arifh")
+SHOOT_SOUND = ExtResource("4_dyfut")
+STEP_SOUND = ExtResource("5_7jihb")
 
 [node name="PlayerSprites" type="Node2D" parent="View"]
 unique_name_in_owner = true
@@ -108,6 +120,15 @@ unique_name_in_owner = true
 visible = false
 sprite_frames = SubResource("SpriteFrames_tslsp")
 offset = Vector2(2.08165e-12, -8)
+
+[node name="NuzzleFlashSprite" type="Sprite2D" parent="View"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(8, -5)
+texture = ExtResource("2_rdf4h")
+offset = Vector2(4, 2.08165e-12)
+region_enabled = true
+region_rect = Rect2(52, 71, 8, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
